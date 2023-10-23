@@ -2,6 +2,8 @@ public class DieCollection
 {
     private int[] myDice; // this will be my five dice. If I set one to zero, then that means it is "used."
 
+
+    // a comment from abby
     public DieCollection()
     {
         myDice = new int[5];
