@@ -4,6 +4,8 @@ public class Row {
 
     public int face;
 
+    public int length;
+
     public String type;
 
     public int howFilled;
@@ -16,9 +18,12 @@ public class Row {
 
     int typeChance = (int)(Math.random() * 100);
 
-    if (typeChance < 60){
+    if (typeChance < 59){
 
-        type = ""
+        face = (int)(Math.random() * 6 + 1);
+        length = (int)(Math.random()* 6 + 1);
+
+        type = length + " of a kind";
 
     }
 
