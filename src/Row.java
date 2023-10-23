@@ -14,7 +14,13 @@ public class Row {
 
     public Row(){
 
+    int typeChance = (int)(Math.random() * 100);
 
+    if (typeChance < 60){
+
+        type = ""
+
+    }
 
     }
 
