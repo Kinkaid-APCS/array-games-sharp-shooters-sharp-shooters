@@ -8,6 +8,10 @@ public class Row {
 
     public int howFilled;
 
+    public Boolean filled = false;
+
+    public String spec;
+
     public Row(){
 
 
