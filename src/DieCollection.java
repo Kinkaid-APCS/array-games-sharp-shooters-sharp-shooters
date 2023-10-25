@@ -34,19 +34,35 @@ public class DieCollection {
 
 
 
-    public void randomizeAllDice() {
-        for (int i = 0; i < 5; i++) {
-            if (myDice[i] > 0) {
-                myDice[1] = (int) (Math.random() * 6) + 1;
+    public void randomizeAllDice(int numOfDie) {
+        if (numOfDie < 5) {
+            for (int i = 0; i < numOfDie; i++) {
+                if (myDice[i] > 0) {
+                    myDice[1] = (int) (Math.random() * 6) + 1;
+
+                }
+            }
+        }
+        else{
+            for (int i = 0; i < 5; i++) {
+                if (myDice[i] > 0) {
+                    myDice[1] = (int) (Math.random() * 6) + 1;
 
             }
+        }
         }
 
     }
 
 
+    //pause
 
-    //end
+    //reset dice
+
+    public void resetDice() {
+        randomizeAllDice();
+    }
+
 
     /**
      * sets the given die to be "used" (i.e., 0).
