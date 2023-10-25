@@ -6,6 +6,7 @@ public class Board //TESTING COMMIT AND PUSH
     // ---------------------------------
     // TODO: Decide what private variables you want for this board. I suggest you keep a collection of Goal objects.
 
+    // a comment from John,
 
     // ---------------------------------
 
