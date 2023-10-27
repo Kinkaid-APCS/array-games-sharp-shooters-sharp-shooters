@@ -52,16 +52,19 @@ public class DieCollection {
             }
         }
         for (int j : myDice) {
-            System.out.println(myDice[j]);
+            System.out.println(myDice[j]); //prints out dice values
         }
     }
 
 
     //pause
-
+//little confused (i think i have to count dice)
     //reset dice
 
     public void resetDice(){
+        for (int i = 0; i < 5; i++){
+            myDice[i] = (int) (Math.random() * 6) + 1;
+        }
 
 
     }
