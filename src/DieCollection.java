@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class DieCollection {
     public int[] myDice; // this will be my five dice. If I set one to zero, then that means it is "used."
 
@@ -36,7 +38,7 @@ public class DieCollection {
     public void randomizeAllDice(int numOfDie) {
         if (numOfDie < 5) {
             for (int i = 0; i < numOfDie; i++) {
-                if (myDice[i] > 0) {
+                if (myDice[i] == 0) {
                     myDice[i] = (int) (Math.random() * 6) + 1;
 
                 }
@@ -44,17 +46,16 @@ public class DieCollection {
         }
         else{
             for (int i = 0; i < 5; i++) {
-                if (myDice[i] > 0) {
+                if (myDice[i] == 0) {
                     myDice[i] = (int) (Math.random() * 6) + 1;
 
 
                 }
             }
         }
-        for (int j : myDice) {
-            System.out.println(myDice[j]); //prints out dice values
+        System.out.println(Arrays.toString(myDice));//prints out dice values
         }
-    }
+
 
     //function for re roll of leftover dice if player chooses to roll instead of pass
     //check through mydice array, if it equals 0 then don't re roll, else other integer then re roll
