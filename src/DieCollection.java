@@ -56,14 +56,17 @@ public class DieCollection {
         }
     }
 
+    //function for re roll of leftover dice if player chooses to roll instead of pass
+    //check through mydice array, if it equals 0 then don't re roll, else other integer then re roll
+
 
     //pause
-//little confused (i think i have to count dice)
+    //little confused (i think i have to count dice)
     //reset dice
 
     public void resetDice(){
         for (int i = 0; i < 5; i++){
-            myDice[i] = (int) (Math.random() * 6) + 1;
+            myDice[i] = 0;
         }
 
 
