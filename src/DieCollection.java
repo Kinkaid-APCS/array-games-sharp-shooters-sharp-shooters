@@ -60,6 +60,19 @@ public class DieCollection {
     //function for re roll of leftover dice if player chooses to roll instead of pass
     //check through mydice array, if it equals 0 then don't re roll, else other integer then re roll
 
+    //re rolls dice that aren't equal to 0
+
+    public void rerollUnusedDice() {
+        for (int i = 0; i < 5; i++) {
+            if (myDice[i] != 0) { //if the die isn't used
+                myDice[i] = (int) (Math.random() * 6 + 1);
+
+            }
+        }
+        System.out.println(Arrays.toString(myDice)); //prints out dice values after re rolling
+    }
+
+
 
     //pause
     //little confused (i think i have to count dice)
