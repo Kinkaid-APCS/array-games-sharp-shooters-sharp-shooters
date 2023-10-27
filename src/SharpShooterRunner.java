@@ -6,6 +6,7 @@ public class SharpShooterRunner
     {
         boolean testingMode = true;
         Row row1 = new Row();
+        Referee reff = new Referee();
         if (testingMode)
         {
             System.out.println("Start tests");
@@ -15,6 +16,7 @@ public class SharpShooterRunner
             System.out.println(row1.points);
             System.out.println(Arrays.toString(row1.face));
             System.out.println("End tests");
+            reff.player1.rollDie();
         }
         else
         {

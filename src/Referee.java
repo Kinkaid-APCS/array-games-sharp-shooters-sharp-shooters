@@ -3,7 +3,7 @@ public class Referee
 
     private Board theBoard;
     private DieCollection dice;
-    private Player player1;
+    public Player player1;
     private Player player2;
     // ---------------------------------
     // TODO: decide what private variables the Referee needs.
@@ -33,5 +33,11 @@ public class Referee
         // ---------------------------------
     }
 
+    public void anyLegalMoves(){
+
+        for (int i=0; i < player1.dice.myDice.length; i++){
+        }
+
+    }
 
 }
