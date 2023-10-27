@@ -72,10 +72,6 @@ public class DieCollection {
         System.out.println(Arrays.toString(myDice)); //prints out dice values after re rolling
     }
 
-
-
-    //pause
-    //little confused (i think i have to count dice)
     //reset dice
 
     public void resetDice(){
