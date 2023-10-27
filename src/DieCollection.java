@@ -1,10 +1,9 @@
 public class DieCollection {
-    private int[] myDice; // this will be my five dice. If I set one to zero, then that means it is "used."
+    public int[] myDice; // this will be my five dice. If I set one to zero, then that means it is "used."
 
 
     public DieCollection() {
         myDice = new int[5];
-        randomizeAllDice();
     }
 
     //added
@@ -38,7 +37,7 @@ public class DieCollection {
         if (numOfDie < 5) {
             for (int i = 0; i < numOfDie; i++) {
                 if (myDice[i] > 0) {
-                    myDice[1] = (int) (Math.random() * 6) + 1;
+                    myDice[i] = (int) (Math.random() * 6) + 1;
 
                 }
             }
@@ -46,12 +45,15 @@ public class DieCollection {
         else{
             for (int i = 0; i < 5; i++) {
                 if (myDice[i] > 0) {
-                    myDice[1] = (int) (Math.random() * 6) + 1;
+                    myDice[i] = (int) (Math.random() * 6) + 1;
 
+
+                }
             }
         }
+        for (int j : myDice) {
+            System.out.println(myDice[j]);
         }
-
     }
 
 
@@ -59,8 +61,9 @@ public class DieCollection {
 
     //reset dice
 
-    public void resetDice() {
-        randomizeAllDice();
+    public void resetDice(){
+
+
     }
 
 
