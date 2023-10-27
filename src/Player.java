@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  * A "Goal" is a single row of spaces that the players are attempting to fill in, from left to right.
  */
@@ -5,7 +7,7 @@ public class Player
 {
     public int points = 0;
     public int numOfDie;
-    private DieCollection dice;
+    public DieCollection dice;
 
 
 
@@ -27,7 +29,6 @@ public class Player
     public void rollDie(){
 
         if (numOfDie >= 5){
-            numOfDie-=5;
             dice.randomizeAllDice(numOfDie);
 
         }
@@ -64,7 +65,7 @@ public class Player
      * adds this die to the row of dice placed. Assumes that the move is a legal one, or will throw an exception.
      * @param dieToPlay - the die to add to the row.
      */
-    public void makeMove(int dieToPlay, int facePos)
+    public int makeMove(int dieToPlay, int facePos)
     {
         if (! isLegalMove(dieToPlay,facePos))
         {
@@ -72,8 +73,11 @@ public class Player
         }
         else{
 
+            dice.myDice[dieToPlay] = 0;
+            return 0;
 
         }
     }
+
 
 }
