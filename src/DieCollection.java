@@ -4,19 +4,24 @@ public class DieCollection {
     public int[] myDice; // this will be my five dice. If I set one to zero, then that means it is "used."
 
 
-    public DieCollection() {
+    public DieCollection()
+    {
         myDice = new int[5];
     }
 
     //added
 
-    public void useDie(int which) {
+    public void useDie(int which)
+    {
         myDice[which] = 0;
     }
 
-    public boolean useDieWithValue(int value) {
-        for (int i = 0;i < 5; i++){
-            if (myDice[i] == value) {
+    public boolean useDieWithValue(int value)
+    {
+        for (int i = 0;i < 5; i++)
+        {
+            if (myDice[i] == value)
+            {
                 useDie(i);
                 return true;
             }
@@ -35,10 +40,14 @@ public class DieCollection {
 
 
 
-    public void randomizeAllDice(int numOfDie) {
-        if (numOfDie < 5) {
-            for (int i = 0; i < numOfDie; i++) {
-                if (myDice[i] == 0) {
+    public void randomizeAllDice(int numOfDie)
+    {
+        if (numOfDie < 5)
+        {
+            for (int i = 0; i < numOfDie; i++)
+            {
+                if (myDice[i] == 0)
+                {
                     myDice[i] = (int) (Math.random() * 6) + 1;
 
                 }
@@ -62,9 +71,12 @@ public class DieCollection {
 
     //re rolls dice that aren't equal to 0
 
-    public void rerollUnusedDice() {
-        for (int i = 0; i < 5; i++) {
-            if (myDice[i] != 0) { //if the die isn't used
+    public void rerollUnusedDice()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            if (myDice[i] != 0)
+            { //if the die isn't used
                 myDice[i] = (int) (Math.random() * 6 + 1);
 
             }
@@ -74,7 +86,8 @@ public class DieCollection {
 
     //reset dice
 
-    public void resetDice(){
+    public void resetDice()
+    {
         for (int i = 0; i < 5; i++){
             myDice[i] = 0;
         }
