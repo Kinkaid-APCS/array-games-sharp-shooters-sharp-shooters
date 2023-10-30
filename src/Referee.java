@@ -1,12 +1,14 @@
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.Scanner;
 public class Referee
 {
 
     private Board theBoard;
-    private DieCollection dice;
     public Player player1;
     private Player player2;
+
+    public Row row1;
 
     private int diePerPlayer;
     // ---------------------------------
@@ -25,7 +27,7 @@ public class Referee
 
         // ---------------------------------
         // TODO: decide what the Referee needs in terms of initial setup.
-
+        row1 = new Row();
         // ---------------------------------
     }
 
@@ -59,6 +61,38 @@ public class Referee
         {
             players[z] = new Player(diePerPlayer);
         }
+        while (canPlay){
+            for (int i=0; i < players.length; i++) {
+                for (Player player : players) {
+                    System.out.println(player.points);
+                }
+
+                System.out.println("BoardHolder");
+                players[i].rollDie();
+                System.out.println(Arrays.toString(players[i].dice.myDice));
+                if (!anyLegalMoves(i)){
+
+                    System.out.println("You have no legal moves");
+                    continue;
+                }
+                else{
+                    boolean possibleDie = false;
+                    while (!possibleDie) {
+                        System.out.println("Which dice would you like to place");
+                        int diePlacement = keyReader.nextInt();
+                        if (diePlacement + 1 <= players[i].dice.myDice.length && diePlacement + 1 > 0){
+
+                            possibleDie = true;
+                        }
+                        else{
+                            System.out.println("That isn't possible dummy, try again");
+
+                        }
+                    }
+
+                }
+            }
+        }
 
 
 
@@ -69,10 +103,15 @@ public class Referee
         // ---------------------------------
     }
 
-    public void anyLegalMoves(){
+    private boolean anyLegalMoves(int j){
 
-        for (int i=0; i < player1.dice.myDice.length; i++){
+        for (int i=0; i < players[j].dice.myDice.length; i++){
+            if (players[j].dice.myDice[i] == row1.face[0]){
+
+                return true;
+            }
         }
+        return false;
 
     }
 
