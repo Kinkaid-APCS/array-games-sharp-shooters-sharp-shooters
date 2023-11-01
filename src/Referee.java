@@ -15,7 +15,7 @@ public class Referee
     // TODO: decide what private variables the Referee needs.
     private boolean canPlay;
     private Scanner keyReader;
-    public Player[] players;
+    public Player[] players = new Player[6];
 
     private long numPlayers;
     // ---------------------------------
@@ -57,14 +57,14 @@ public class Referee
             }
         }
         diePerPlayer = (int)(Math.floor(32/numPlayers));
-        for (int z = 0; z <= numPlayers; z++)
+        for (int z = 0; z < numPlayers; z++)
         {
             players[z] = new Player(diePerPlayer);
         }
         while (canPlay){
-            for (int i=0; i < players.length; i++) {
-                for (Player player : players) {
-                    System.out.println(player.points);
+            for (int i=0; i < numPlayers; i++) {
+                for (int j = 0; j <numPlayers; i++) {
+                    System.out.println("Player " + j + " points equal: " + players[j].points);
                 }
 
                 System.out.println("BoardHolder");
@@ -78,7 +78,7 @@ public class Referee
                 else{
                     boolean possibleDie = false;
                     while (!possibleDie) {
-                        System.out.println("Which dice would you like to place");
+                        System.out.println("Player " + i +", which dice would you like to place");
                         int diePlacement = keyReader.nextInt();
                         if (diePlacement + 1 <= players[i].dice.myDice.length && diePlacement + 1 > 0){
 
@@ -89,7 +89,20 @@ public class Referee
 
                         }
                     }
+                    boolean possibleRow = false;
+                    while (!possibleRow){
+                        System.out.println("Player " + i +", which row would you like to put it in");
+                        int diePlacement = keyReader.nextInt();
+                        if (diePlacement + 1 <= players[i].dice.myDice.length && diePlacement + 1 > 0){
 
+                            possibleRow = true;
+                        }
+                        else{
+                            System.out.println("That isn't possible dummy, try again");
+
+                        }
+
+                    }
                 }
             }
         }
