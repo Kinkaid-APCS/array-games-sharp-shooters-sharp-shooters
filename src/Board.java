@@ -9,12 +9,16 @@
 public class Board //TESTING COMMIT AND PUSH
 {
 
-    public Row[] board;
+    public Row[] rows = new Row[6];
+
     public Board()
     {
         // ---------------------------------
         //  TODO: set up the Goals
-
+        for (int z = 0; z < 6; z++)
+        {
+            rows[z] = new Row();
+        }
 
 
         // ---------------------------------
@@ -27,22 +31,40 @@ public class Board //TESTING COMMIT AND PUSH
         // ---------------------------------
         // TODO: modify result so that it shows all the goals.
 
-        for (int z = 0; z < 6; z++)
-        {
-            Row row = new Row();
-        }
+
 
         System.out.println("current board");
-        System.out.print("Row 1 : ");
-        for (int z = 0; z < 1; z++) // 1 = how filled
-        {
-            System.out.print(" X ");
+
+        for (int i=0;i < 6; i++) {
+            System.out.print("Row " + (i+1) +  " : ");
+            for (int z = 0; z < rows[i].howFilled; z++)
+            {
+                System.out.print("X" + "\t");
+            }
+            for (int x = rows[i].length - rows[i].howFilled; x > 0; x--) //
+            {
+                System.out.print("_" + "\t");
+            }
+            System.out.print("\t" + "\t" + "\t" + "Reward: " + rows[i].points);
+            System.out.println(" ");
+            System.out.print("\t" + "\t");
+
+            for (int j = 0; j < rows[i].length; j++)
+            {
+                if (rows[i].face[j] == -1)
+                {
+                    System.out.print("*" + "\t");
+                }
+                else
+                {
+                    System.out.print(rows[i].face[j] + "\t");
+                }
+
+            }
+
+            System.out.println(" ");
+            System.out.println(" ");
         }
-        for (int x = 6-1; x > 1; x--) // 1 = how filled
-        {
-            System.out.print(" _ ");
-        }
-        System.out.print("                       Reward" + );
         // ---------------------------------
 
 
