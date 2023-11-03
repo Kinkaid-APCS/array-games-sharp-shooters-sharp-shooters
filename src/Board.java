@@ -11,6 +11,7 @@ public class Board //TESTING COMMIT AND PUSH
 
     public Row[] rows = new Row[6];
 
+
     public Board()
     {
         // ---------------------------------
@@ -67,6 +68,24 @@ public class Board //TESTING COMMIT AND PUSH
         }
         // ---------------------------------
 
+
+    }
+
+    public void resetBoard(){
+        for (int z = 0; z < 6; z++)
+        {
+            rows[z] = new Row();
+        }
+    }
+
+    public boolean boardFull(){
+        for (int i = 0; i < 6; i++){
+            if (!rows[i].isFull){
+                return false;
+            }
+
+        }
+        return true;
 
     }
 

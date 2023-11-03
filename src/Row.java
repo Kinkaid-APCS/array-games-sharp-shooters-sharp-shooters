@@ -14,7 +14,9 @@ public class Row {
 
     public String spec;
 
-    public Boolean ofAKind = false;
+    public boolean ofAKind = false;
+
+    public boolean isFull =false;
 
     public Row(){
 
@@ -104,11 +106,6 @@ public class Row {
 
         }
 
-    }
-
-    public Boolean isFull(){
-
-        return howFilled == length;
     }
 
     private void smallStraight(){

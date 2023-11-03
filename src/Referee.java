@@ -3,14 +3,11 @@ import java.util.Objects;
 import java.util.Scanner;
 public class Referee
 {
-
-    private Board theBoard;
-    public Player player1;
-    private Player player2;
-
-    public Row row1;
-
+    public int boardsUsed = 0;
+    public Board board;
     private int diePerPlayer;
+    public int diePlacement;
+    public int rowPlacement;
     // ---------------------------------
     // TODO: decide what private variables the Referee needs.
     private boolean canPlay;
@@ -27,7 +24,7 @@ public class Referee
 
         // ---------------------------------
         // TODO: decide what the Referee needs in terms of initial setup.
-        row1 = new Row();
+        board = new Board();
         // ---------------------------------
     }
 
@@ -57,51 +54,114 @@ public class Referee
             }
         }
         diePerPlayer = (int)(Math.floor(32/numPlayers));
+        //adding num of players to the player array
         for (int z = 0; z < numPlayers; z++)
         {
             players[z] = new Player(diePerPlayer);
         }
+        for (int r = 0; r < numPlayers; r++){
+            players[r].dice.resetDice();
+        }
+        //playing until 6 boards are cleared
         while (canPlay){
+            // displays points and dice for each player
             for (int i=0; i < numPlayers; i++) {
-                for (int j = 0; j <numPlayers; i++) {
-                    System.out.println("Player " + j + " points equal: " + players[j].points);
+                for (int j = 0; j <numPlayers; j++) {
+                    System.out.println("Player " + (j+1) + " points equal: " + players[j].points);
+                    System.out.println("Player " + (j+1) + " has " + players[j].numOfDie + " dice");
                 }
 
-                System.out.println("BoardHolder");
+                board.printBoard();
                 players[i].rollDie();
-                System.out.println(Arrays.toString(players[i].dice.myDice));
-                if (!anyLegalMoves(i)){
+                //checks if there are any legal moves at all
+                if (!anyLegalMoves(i)) {
 
                     System.out.println("You have no legal moves");
                     continue;
                 }
                 else{
-                    boolean possibleDie = false;
-                    while (!possibleDie) {
-                        System.out.println("Player " + i +", which dice would you like to place");
-                        int diePlacement = keyReader.nextInt();
-                        if (diePlacement + 1 <= players[i].dice.myDice.length && diePlacement + 1 > 0){
 
-                            possibleDie = true;
+                    boolean possibleMatch = false;
+                    //Does the die chosen later match the row chosen later
+                    while (!possibleMatch) {
+                        boolean possibleDie = false;
+                        // did the player pick a die within the array of 5 dice
+                        while (!possibleDie) {
+                            System.out.println("Player " + (i+1) + ", which dice would you like to place");
+                            diePlacement = keyReader.nextInt();
+                            if (diePlacement <= players[i].dice.myDice.length && diePlacement + 1> 0) {
+
+                                possibleDie = true;
+                            } else {
+                                System.out.println("That isn't possible dummy, try again");
+
+                            }
+                        }
+                        // did the player pick a row that is filled or outside of the 6 given
+                        boolean possibleRow = false;
+                        while (!possibleRow) {
+                            System.out.println("Player " + (i+1) + ", which row would you like to put it in");
+                            rowPlacement = keyReader.nextInt();
+                            if (rowPlacement <= board.rows.length && rowPlacement > 0 && !board.rows[rowPlacement-1].isFull) {
+
+                                possibleRow = true;
+                            } else {
+                                System.out.println("That isn't possible dummy, try again");
+
+                            }
+
+                        }
+                        //checks if row spot matches die number chosen
+                        if (board.rows[rowPlacement -1].face[board.rows[rowPlacement-1].howFilled] == players[i].dice.myDice[diePlacement-1]){
+                            //changes/possible changes made after placement
+                            possibleMatch = true;
+                            board.rows[rowPlacement-1].howFilled += 1;
+                            players[i].numOfDie -= 1;
+                            players[i].dice.myDice[diePlacement-1] = 0;
+                            //adding points to player
+                            if (board.rows[rowPlacement-1].howFilled == board.rows[rowPlacement-1].length){
+                                players[i].points += board.rows[rowPlacement-1].points;
+                                board.rows[rowPlacement-1].isFull = true;
+
+                            }
+                            System.out.println("placed success");
+                            //resetting things if board is full
+                            if (board.boardFull()){
+                                board.resetBoard();
+                                for (int y = 0; y < numPlayers; y++){
+
+                                    players[y].numOfDie = diePerPlayer;
+                                }
+                                boardsUsed += 1;
+                                if (boardsUsed == 6){
+                                    canPlay = false;
+                                    System.out.println(" That was the final board");
+                                    System.out.println(" And the winner is.....");
+
+
+                                }
+                                i = 0;
+                                continue;
+
+                            }
+                            //reprinting any edits
+
+                            board.printBoard();
+                            System.out.println("Would you like to pass or play");
+                            String playAgain = keyReader.next();
+                            if (Objects.equals(playAgain, "play")){
+
+                                i -= 1;
+                            }
+                            else{
+                                players[i].dice.resetDice();
+                            }
                         }
                         else{
-                            System.out.println("That isn't possible dummy, try again");
 
+                            System.out.println("that match doesn't work, try again");
                         }
                     }
-                    boolean possibleRow = false;
-                    while (!possibleRow){
-                        System.out.println("Player " + i +", which row would you like to put it in");
-                        int diePlacement = keyReader.nextInt();
-                        if (diePlacement + 1 <= players[i].dice.myDice.length && diePlacement + 1 > 0){
-
-                            possibleRow = true;
-                        }
-                        else{
-                            System.out.println("That isn't possible dummy, try again");
-
-                        }
-
                     }
                 }
             }
@@ -114,14 +174,17 @@ public class Referee
 
 
         // ---------------------------------
-    }
+
+
 
     private boolean anyLegalMoves(int j){
 
-        for (int i=0; i < players[j].dice.myDice.length; i++){
-            if (players[j].dice.myDice[i] == row1.face[0]){
+        for (int i=0; i < players[j].dice.myDice.length; i++) {
+            for (int k = 0; k < 6; k++) {
+                if (players[j].dice.myDice[i] == board.rows[k].face[board.rows[k].howFilled]){
 
-                return true;
+                    return true;
+                }
             }
         }
         return false;

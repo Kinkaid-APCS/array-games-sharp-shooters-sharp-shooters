@@ -4,7 +4,7 @@ public class SharpShooterRunner
 {
     public static void main(String[] args)
     {
-        boolean testingMode = true;
+        boolean testingMode = false;
         Referee reff = new Referee();
         Board board = new Board();
         if (testingMode)

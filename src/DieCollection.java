@@ -42,6 +42,7 @@ public class DieCollection {
 
     public void randomizeAllDice(int numOfDie)
     {
+
         if (numOfDie < 5)
         {
             for (int i = 0; i < numOfDie; i++)
@@ -55,7 +56,7 @@ public class DieCollection {
         }
         else{
             for (int i = 0; i < 5; i++) {
-                if (myDice[i] == 0) {
+                if (myDice[i] != 0) {
                     myDice[i] = (int) (Math.random() * 6) + 1;
 
 
@@ -89,7 +90,7 @@ public class DieCollection {
     public void resetDice()
     {
         for (int i = 0; i < 5; i++){
-            myDice[i] = 0;
+            myDice[i] = -1;
         }
 
 

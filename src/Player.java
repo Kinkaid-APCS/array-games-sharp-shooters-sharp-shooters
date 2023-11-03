@@ -39,17 +39,6 @@ public class Player
 
     }
 
-
-    public String toString()
-    {
-        String result = "";
-        // ---------------------------------
-        // TODO: you write this.
-
-        // ---------------------------------
-        return result;
-    }
-
     /**
      * Is it ok for the user to place this die next? (DOES NOT actually do the placement)
      * @param dieToConsider
