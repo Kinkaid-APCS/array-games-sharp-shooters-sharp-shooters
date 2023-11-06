@@ -69,12 +69,12 @@ public class Row {
             fullHouse();
 
         }
-        if (specChance < 10 && !type.equals("super straight") && !type.equals("large straight") && !type.equals("small straight")){
+        if (specChance < 0 && !type.equals("super straight") && !type.equals("large straight") && !type.equals("small straight")){
 
             spec = "star";
 
         }
-        else if (specChance < 25){
+        else if (specChance < 15){
 
             spec = "negative";
             points *= -1;

@@ -97,7 +97,7 @@ public class Referee
 
                             }
                         }
-                        // did the player pick a row that is filled or outside of the 6 given
+                        // did the player pick a row that is filled or outside the 6 given
                         boolean possibleRow = false;
                         while (!possibleRow) {
                             System.out.println("Player " + (i+1) + ", which row would you like to put it in");
